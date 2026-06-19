@@ -28,10 +28,12 @@ AUDIT PARAMETERS:
 WORKFLOW INSTRUCTIONS:
 1. **Analyze**: Use `fetch_policy` and `verify_merchant_reputation` (> $50).
 2. **Decide**: Set status to COMPLIANT, FLAGGED, or REJECTED.
-3. **Persist (FS MCP)**: Always call `archive_audit_log` with the reasoning.
-4. **Track (Sheets MCP)**: For COMPLIANT transactions, use `log_to_sheets`.
-5. **Schedule (Calendar MCP)**: If FLAGGED, you MUST use `schedule_review`.
-6. **Notify (Email MCP)**: Call `send_notification` for all verdict outcomes.
+3. **MANDATORY ACTIONS**:
+   - `archive_audit_log`: Call this for EVERY transaction.
+   - `log_to_sheets`: Call this for COMPLIANT transactions.
+   - `schedule_review`: Call this for FLAGGED transactions.
+   - `send_notification`: Call this to inform the user.
+4. **Summary**: Your `auditor_summary` MUST list which MCP integrations were triggered (e.g., "Email sent", "Archive created").
 
 RESPONSE FORMAT (JSON):
 {{

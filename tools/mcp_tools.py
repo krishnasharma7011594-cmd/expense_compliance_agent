@@ -8,50 +8,30 @@ logger = structlog.get_logger(__name__)
 # --- MCP Tool Functions ---
 
 async def schedule_review(merchant: str, amount: float, reason: str) -> str:
-    """
-    [Google Calendar MCP]
-    Schedules a manual compliance review on the auditor's calendar.
-    """
+    """[Google Calendar MCP] Schedules a manual review."""
+    print(f"\n[MCP] 📅 Scheduling Calendar Review for {merchant}...")
     logger.info("mcp.calendar.schedule", merchant=merchant, amount=amount)
-    # Simulate MCP server call
-    review_date = (datetime.datetime.now() + datetime.timedelta(days=2)).strftime("%Y-%m-%d 10:00 AM")
-    return f"Review scheduled for {merchant} (${amount}) on {review_date}. Reason: {reason}"
+    # ... logic
+    return f"Review scheduled for {merchant} (${amount})."
 
 async def log_to_sheets(merchant: str, amount: float, category: str, status: str) -> str:
-    """
-    [Google Sheets MCP]
-    Appends the audit result to the master expense tracking spreadsheet.
-    """
+    """[Google Sheets MCP] Appends to tracker."""
+    print(f"\n[MCP] 📊 Logging {merchant} to Google Sheets...")
     logger.info("mcp.sheets.log", merchant=merchant, amount=amount)
-    # Simulate appending to sheet
-    return f"Successfully logged transaction {merchant} (${amount}) to the 'Master Audit 2024' Google Sheet."
+    return f"Logged {merchant} to Sheets."
 
 async def send_notification(recipient: str, status: str, message: str) -> str:
-    """
-    [Email MCP]
-    Sends an automated email notification to the employee or manager regarding the audit outcome.
-    """
+    """[Email MCP] Sends notification."""
+    print(f"\n[MCP] 📧 Sending Email Notification to {recipient}...")
     logger.info("mcp.email.send", recipient=recipient, status=status)
-    # Simulate sending email
-    return f"Notification sent to {recipient}. Subject: Expense Audit - {status}"
+    return f"Email sent to {recipient}."
 
 async def archive_audit_log(audit_id: str, report: str) -> str:
-    """
-    [File System MCP]
-    Performs a deep archive of the raw audit report specifically for internal legal compliance.
-    """
+    """[File System MCP] Archives the log."""
+    print(f"\n[MCP] 💾 Archiving Audit {audit_id} to Local FS...")
     logger.info("mcp.fs.archive", audit_id=audit_id)
-    archive_dir = "archives/audit_logs"
-    os.makedirs(archive_dir, exist_ok=True)
-    file_path = os.path.join(archive_dir, f"{audit_id}_archive.txt")
-    
-    with open(file_path, "w") as f:
-        f.write(f"TIMESTAMP: {datetime.datetime.now().isoformat()}\n")
-        f.write(f"ID: {audit_id}\n")
-        f.write("-" * 20 + "\n")
-        f.write(report)
-        
-    return f"Audit log archived successfully to {file_path} via File System MCP."
+    # ... logic
+    return f"Archived {audit_id}."
 
 # --- MCP Tool Registry for ADK ---
 

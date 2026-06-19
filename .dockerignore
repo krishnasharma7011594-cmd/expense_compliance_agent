@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+node_modules/
+frontend/
+.git/
+.github/
+*.db
+*.sqlite3
+archives/

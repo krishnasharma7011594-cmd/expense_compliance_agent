@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "expense-compliance-agent-prod"
+  }
+}

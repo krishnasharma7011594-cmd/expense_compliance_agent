@@ -1,0 +1,11 @@
+google-adk
+google-genai
+pydantic
+pydantic-settings
+python-dotenv
+pytest
+structlog
+fastapi
+uvicorn
+python-multipart
+aiosqlite

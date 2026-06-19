@@ -1,0 +1,37 @@
+agent:
+  name: "ExpenseComplianceAgent"
+  version: "1.0.0"
+  capabilities:
+    - name: "compliance_audit"
+      description: "Analyze transactions for policy violations and fraud patterns."
+    - name: "security_escalation"
+      description: "Trigger security alerts for high-risk anomalies."
+
+model_configuration:
+  model_id: "gemini-1.5-flash"
+  temperature: 0.1
+  top_p: 0.95
+  max_output_tokens: 2048
+
+tools:
+  - name: "fetch_policy"
+    description: "Retrieves current corporate spending and travel policies from the internal knowledge base."
+    enabled: true
+  - name: "request_human_review"
+    description: "Escalates a flagged expense to a human finance administrator for manual decision."
+    enabled: true
+
+policies:
+  approval_thresholds:
+    automatic_limit: 100.0
+    currency: "USD"
+  compliance_rules:
+    require_receipt_above: 25.0
+    restricted_categories:
+      - "entertainment"
+      - "alcohol"
+      - "personal_items"
+
+runtime_settings:
+  max_retries: 3
+  timeout_seconds: 30

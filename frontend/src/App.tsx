@@ -5,8 +5,6 @@ import {
     History,
     Settings as SettingsIcon,
     Plus,
-    Upload,
-    ShieldCheck,
     ShieldAlert,
     MoreHorizontal,
     ChevronRight,

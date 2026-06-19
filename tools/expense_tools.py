@@ -1,6 +1,7 @@
 import structlog
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field
+from tools.mcp_tools import MCP_TOOLS
 
 # Initialize logger
 logger = structlog.get_logger(__name__)
@@ -64,5 +65,6 @@ TOOLS_REGISTRY = {
     "fetch_policy": fetch_policy,
     "request_human_review": request_human_review,
     "convert_currency": convert_currency,
-    "estimate_tax_impact": estimate_tax_impact
+    "estimate_tax_impact": estimate_tax_impact,
+    **MCP_TOOLS  # Inject advanced MCP integrations
 }
